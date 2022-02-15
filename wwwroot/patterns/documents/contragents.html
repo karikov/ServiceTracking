@@ -1,0 +1,93 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="contragentsLoadedContent">
+        <div class="documentTitle">Контрагент</div>
+        <form id="contragentsFormBody" data="contragents" class="needFillData" onsubmit="SaveEntity('#contragentsFormBody'); return false">
+            <input type="submit" value="" hidden />
+            <div class="row">
+                <div class="col-md form-group">
+                    <input name="id" style="display: none;" type="number">
+                    <label>Наименование</label>
+                    <input class="form-control" name="name">
+                    <label>УНП</label>
+                    <input class="form-control" name="unp">
+                    <label>Телефон</label>
+                    <input class="form-control" name="phone" type="text">
+                    <label>Адрес электронной почты</label>
+                    <input class="form-control" name="email" type="email">
+                    <hr />
+                    <div id="usersForm" class="dropdownField" data='{"linkedTable":"users"}'>
+                        <label>Инициатор заключения договора</label>
+                        <input hidden class="id" name="userId" type="number" value="0">
+                        <input id="usersInput" class="form-control dropdown speller" name="name" type="text" value=""
+                               oninput="showSelector('#usersInput', '.id' )">
+                        <span class="dropdown-icon"
+                              onclick="toggleSelector('#usersInput', '.id' )">
+                            <!--редактировать первый параметр ф-ции showSelector-->
+                            <i class="fa fa-sort-down"></i>
+                        </span>
+                        <span class="inlineIcon close-icon"
+                              onclick="clearDropdown('#usersForm')">
+                            <!--редактировать первый параметр ф-ции clearDropdown-->
+                            <i class="fa fa-close"></i>
+                        </span>
+                    </div>
+
+                    <br />
+                    <input class="" name="useForReport" type="checkbox" value="on">
+                    <label>Используется для отчетности</label>
+                    <br />
+                </div>
+                <div class="col-md form-group">
+                    <label>Юридический адрес</label>
+                    <textarea class="form-control" name="legalAddress"></textarea>
+                    <label>Почтовый адрес</label>
+                    <textarea class="form-control" name="legalAddress"></textarea>
+                    <label>Ответственное лицо</label>
+                    <input class="form-control" name="responsiblePerson" type="text">
+                    <label>Реквизиты для печатной формы</label>
+                    <textarea class="form-control" name="printFormFill"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="btn btn-white" onclick="SaveEntity('#contragentsFormBody')">Сохранить</div>
+                <div class="btn btn-white HideIfNoParentWindow" onclick="CloseParentWindow()">Закрыть</div>
+            </div>
+        </form>
+        <div class="form-group">
+            <label>Договора</label><hr />
+            <!--наполняемая с помощью fillData таблица-->
+            <table id="agreements" class="needFillData table table-stripped HideIfNewRecord" data='{"linkedTable":"agreements","foreignKey":"ContragentId"}'>
+                <tr>
+                    <th name="name">Наименование и номер</th>
+                    <th name="startDate">Дата</th>
+                    <th name="fk_currencyId_currencies_name">Валюта</th>
+                    <th name="summ">Сумма</th>
+                    <th class="actionsTd" name="actionCol">Действия</th>
+                </tr>
+            </table>
+            <div class="btn btn-white HideIfNewRecord" onclick="editData('agreements', 0, 'contragentId')">Добавить договор</div>
+        </div>
+        <div class="form-group">
+            <label>Расчетные счета</label><hr />
+            <!--наполняемая с помощью fillData таблица-->
+            <table id="bankAccounts" class="needFillData table table-stripped HideIfNewRecord" data='{"linkedTable":"bankaccounts","foreignKey":"ContragentId"}'>
+                <tr>
+                    <th name="name">Наименование</th>
+                    <th name="accountNum">Номер счета</th>
+                    <th name="fk_bankId_banks_name">Банк</th>
+                    <th name="fk_currencyId_currencies_name">Валюта</th>
+                    <th class="actionsTd" name="actionCol">Действия</th>
+                </tr>
+            </table>
+            <div class="btn btn-white HideIfNewRecord" onclick="editData('bankaccounts', 0, 'contragentId')">Добавить расчетный счет</div>
+        </div>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,31 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="LoadedContent">
+        <div class="form-group">
+            <div class="row">
+                <div class="documentTitle col-md-2">Пользователи</div>
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+                    <input id="filterTableInput" class="form-control" type="text" name="filter" value="" placeholder="Фильтр" onkeypress="filterTable(event,'#orders')" />
+                </div>
+            </div>
+            <hr />
+            <!--наполняемая с помощью fillData таблица-->
+            <table id="orders" class="needFillData table table-stripped" data='{"linkedTable": "users"}'>
+                <tr>
+                    <th name="id">Номер</th>
+                    <th name="name">Имя</th>
+                    <th name="role">Роль</th>
+                    <th name="fk_positionId_positions_name">Должность</th>
+                    <th class="actionsTd" name="actionCol">Действия</th>
+                </tr>
+            </table>
+            <hr />
+            <div class="btn btn-white" onclick="editData('users', 0)">Добавить пользователя</div>
+        </div>
+    </div>
+</body>
+</html>

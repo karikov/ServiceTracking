@@ -1,0 +1,27 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="LoadedContent">
+        <div class="documentTitle col-md-2">Инструменты</div>
+
+        <div class="form-group">
+            <h3>Импорт данных из выгрузки 1с. Логика прописывается в контроллере invoices/import.</h3>
+            <div class="menuitem" onclick="ApiRequest('GET', '/api/invoices/import')">Импортировать данные</div>
+            <hr />
+            <h3>Обновление данных в PO. Логика прописывается в контроллере orders/refresh.</h3>
+            <div class="menuitem" onclick="ApiRequest('GET', '/api/orders/refresh')">Обновление</div>
+            <hr />
+            <h3>Формирование PO из инвойсов</h3>
+            <label>Формирование PO из инвойсов. Логика прописывается в контроллере orders/import.</label>
+            <form id="invoiceDateRange">
+                <label>Диапазон дат инвойсов: </label>
+                <input type="date" id="startDate" value="" />
+                <input type="date" id="endDate" value="" />
+                <div class="btn btn-white" onclick="ApiRequest('GET', '/api/orders/import?startdate={#invoiceDateRange/#startDate}&enddate={#invoiceDateRange/#endDate}')">Сформировать</div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

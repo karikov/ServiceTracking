@@ -1,0 +1,40 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="ordersLoadedContent">
+        <div class="documentTitle">Реестр</div>
+        <form id="orderRegistriesFormBody" data="orders" class="needFillData form-group" onsubmit="SaveEntity('#orderRegistriesFormBody'); return false">
+            <input type="submit" value="" hidden />
+            <div class="row">
+                </div>
+            <div class="col-md">
+                <input class="form-control" name="id" style="display: none;" type="number">
+                <label>Номер</label>
+                <input class="form-control" name="id" type="number" disabled>
+                <label>Дата от</label>
+                <input class="form-control" name="startDate" type="date">
+                <label>Дата по</label>
+                <input class="form-control" name="endDate" type="date">
+            </div>
+            <hr />
+            <div class="btn btn-white" onclick="SaveEntity('#orderRegistriesFormBody')">Сохранить</div>
+            <div class="btn btn-white HideIfNewRecord" onclick="printDocument()">Печать</div>
+            <div class="btn btn-white HideIfNoParentWindow" onclick="CloseParentWindow()">Закрыть</div>
+        </form>
+        <div class="form-group">
+            <label>Состав</label><hr />
+            <table id="orders" class="needFillData table table-stripped HideIfNewRecord" data='{"linkedTable":"orders", "foreignKey":"orderRegistryId"}'>
+                <tr>
+                    <th name="id">ИД</th>
+                    <th name="reference">Референс</th>
+                    <th name="date">Дата</th>
+                    <th name="fk_contragentId_contragents_name">Контрагент</th>
+                    <th class="actionsTd" name="actionCol">Действия</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

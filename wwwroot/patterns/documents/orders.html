@@ -1,0 +1,111 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="ordersLoadedContent">
+        <div class="documentTitle">Ордер</div>
+        <form id="ordersFormBody" data="orders" class="needFillData form-group" onsubmit="SaveEntity('#ordersFormBody'); return false">
+            <input type="submit" value="" hidden />
+            <div class="row">
+                <div class="col-md">
+                    <div id="contragentsForm" class="dropdownField" data='{"linkedTable":"contragents"}'>
+                        <label>Контрагент</label>
+                        <input hidden class="id" name="contragentId" type="number" value="0">
+                        <input id="contragentsInput" class="form-control dropdown speller" name="name" type="text" value=""
+                               oninput="showSelector('#contragentsInput', '.id' )">
+                        <span class="dropdown-icon"
+                              onclick="toggleSelector('#contragentsInput', '.id' )">
+                            <!--редактировать первый параметр ф-ции showSelector-->
+                            <i class="fa fa-sort-down"></i>
+                        </span>
+                        <span class="inlineIcon close-icon"
+                              onclick="clearDropdown('#contragentsForm')">
+                            <!--редактировать первый параметр ф-ции clearDropdown-->
+                            <i class="fa fa-close"></i>
+                        </span>
+                    </div>
+                    <div id="agreementsForm" class="dropdownField" data='{"linkedTable":"agreements", "filter":"contragents"}'>
+                        <label>Договор</label>
+                        <input hidden class="id" name="agreementId" type="number" value="0">
+                        <input id="agreementsInput" class="form-control dropdown speller" name="name" type="text" value=""
+                               oninput="showSelector('#agreementsInput', '.id' )">
+                        <span class="dropdown-icon"
+                              onclick="toggleSelector('#agreementsInput', '.id' )">
+                            <!--редактировать первый параметр ф-ции showSelector-->
+                            <i class="fa fa-sort-down"></i>
+                        </span>
+                        <span class="inlineIcon close-icon"
+                              onclick="clearDropdown('#agreementsForm')">
+                            <!--редактировать первый параметр ф-ции clearDropdown-->
+                            <i class="fa fa-close"></i>
+                        </span>
+                    </div>
+                    <div id="usersForm" class="dropdownField" data='{"linkedTable":"users"}'>
+                        <label>Инициатор</label>
+                        <input hidden class="id" name="userId" type="number" value="0">
+                        <input id="usersInput" class="form-control dropdown speller" name="name" type="text" value=""
+                               oninput="showSelector('#usersInput', '.id' )" disabled>
+                    </div>
+                    <label>Дата</label>
+                    <input class="form-control" name="date" type="date">
+                </div>
+                <div class="col-md">
+                    <input class="form-control" name="id" style="display: none;" type="number">
+                    <label>Номер</label>
+                    <input class="form-control" name="id" type="number" disabled>
+                    <label>Референс</label>
+                    <input class="form-control" name="reference" type="text">
+                    <label>Обоснование</label>
+                    <input class="form-control" name="justification" type="text">
+                </div>
+            </div>
+            <!--<hr />-->
+            <div class="row">
+                <div class="col-md">
+                    <label>Сумма</label>
+                    <input class="form-control refreshAfterObjectModify" name="summ" type="number" disabled>
+                </div>
+                <div class="col-md">
+                    <br />
+                    <label>Согласован</label>
+                    <input class="iconedCheckbox" name="approved" type="checkbox" disabled>
+                </div>
+            </div>
+            <!--<hr />-->
+            <div class="btn btn-white" onclick="SaveEntity('#ordersFormBody')">Сохранить</div>
+            <div class="btn btn-white" onclick="printDocument()">Печать</div>
+            <div class="btn btn-white HideIfNoParentWindow" onclick="CloseParentWindow()">Закрыть</div>
+        </form>
+        <div class="form-group">
+            <label>Состав</label>
+            <!--<hr />-->
+            <table id="orderItems" class="needFillData table table-stripped HideIfNewRecord" data='{"linkedTable":"orderItems", "foreignKey":"OrderId", "editInTable":true}'>
+                <tr>
+                    <th name="brand">Бренд</th>
+                    <th name="description">Описание</th>
+                    <th name="qty">Количество</th>
+                    <th name="price">Стоимость</th>
+                    <th name="deliveryDate">Ожидаемая дата поставки</th>
+                    <th class="actionsTd" name="actionCol">Действия</th>
+                </tr>
+            </table>
+            <div class="btn btn-white HideIfNewRecord" onclick="createTableRow('#orderItems', 'orderId')">Добавить позицию</div>
+        </div>
+        <div class="form-group">
+            <label>Подписи</label>
+            <!--<hr />-->
+            <table id="signatures" class="needFillData table table-stripped HideIfNewRecord" data='{"linkedTable":"signatures", "foreignKey":"OrderId"}'>
+                <tr>
+                    <th name="fk_userId_positions/user_name">Должность</th>
+                    <th name="fk_userId_users_name">Сотрудник</th>
+                    <th name="approval">Согласовано</th>
+                    <th name="date">Дата</th>
+                    <th class="actionsTd" name="actionCol">Действия</th>
+                </tr>
+            </table>
+            <div class="btn btn-white HideIfNewRecord" onclick="editData('signatures', 0, 'orderId')">Добавить подпись</div>
+        </div>
+    </div>
+</body>
+</html>

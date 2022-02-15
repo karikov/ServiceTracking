@@ -1,0 +1,94 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="ordersLoadedContent">
+        <div class="documentTitle">Счет</div>
+        <form id="invoicesFormBody" data="invoices" class="needFillData form-group" onsubmit="SaveEntity('#invoicesFormBody'); return false">
+            <input type="submit" value="" hidden />
+            <div class="row">
+                <div class="col-md">
+                    <div id="contragentsForm" class="dropdownField" data='{"linkedTable":"contragents"}'>
+                        <label>Контрагент</label>
+                        <input hidden class="id" name="contragentId" type="number" value="0">
+                        <input id="contragentsInput" class="form-control dropdown speller" name="name" type="text" value=""
+                               oninput="showSelector('#contragentsInput', '.id' )">
+                        <span class="dropdown-icon"
+                              onclick="toggleSelector('#contragentsInput', '.id' )">
+                            <!--редактировать первый параметр ф-ции showSelector-->
+                            <i class="fa fa-sort-down"></i>
+                        </span>
+                        <span class="inlineIcon close-icon"
+                              onclick="clearDropdown('#contragentsForm')">
+                            <!--редактировать первый параметр ф-ции clearDropdown-->
+                            <i class="fa fa-close"></i>
+                        </span>
+                    </div>
+                    <div id="agreementsForm" class="dropdownField" data='{"linkedTable":"agreements", "filter":"contragents"}'>
+                        <label>Договор</label>
+                        <input hidden class="id" name="agreementId" type="number" value="0">
+                        <input id="agreementsInput" class="form-control dropdown speller" name="name" type="text" value=""
+                               oninput="showSelector('#agreementsInput', '.id' )">
+                        <span class="dropdown-icon"
+                              onclick="toggleSelector('#agreementsInput', '.id' )">
+                            <!--редактировать первый параметр ф-ции showSelector-->
+                            <i class="fa fa-sort-down"></i>
+                        </span>
+                        <span class="inlineIcon close-icon"
+                              onclick="clearDropdown('#agreementsForm')">
+                            <!--редактировать первый параметр ф-ции clearDropdown-->
+                            <i class="fa fa-close"></i>
+                        </span>
+                    </div>
+                    <div id="currenciesForm" class="dropdownField" data='{"linkedTable":"currencies"}'>
+                        <label>Валюта</label>
+                        <input hidden class="id" name="currencyId" type="number" value="0">
+                        <input id="currenciesInput" class="form-control dropdown speller" name="name" type="text" value=""
+                               oninput="showSelector('#currenciesInput', '.id' )">
+                        <span class="dropdown-icon"
+                              onclick="toggleSelector('#currenciesInput', '.id' )">
+                            <!--редактировать первый параметр ф-ции showSelector-->
+                            <i class="fa fa-sort-down"></i>
+                        </span>
+                        <span class="inlineIcon close-icon"
+                              onclick="clearDropdown('#currenciesForm')">
+                            <!--редактировать первый параметр ф-ции clearDropdown-->
+                            <i class="fa fa-close"></i>
+                        </span>
+                    </div>
+
+                </div>
+                <div class="col-md">
+                    <label>Номер</label>
+                    <input class="form-control" name="number" type="number" disabled>
+                    <label>Курс валюты</label>
+                    <input class="form-control" name="currencyRate" type="number">
+                    <label>Сумма</label>
+                    <input class="form-control" name="summ" type="number">
+                    <label>Дата</label>
+                    <input class="form-control" name="date" type="date">
+                </div>
+            </div>
+            <hr />
+            <div class="btn btn-white" onclick="SaveEntity('#invoicesFormBody')">Сохранить</div>
+            <div class="btn btn-white" onclick="printDocument()">Печать</div>
+            <div class="btn btn-white HideIfNoParentWindow" onclick="CloseParentWindow()">Закрыть</div>
+        </form>
+        <div class="form-group">
+            <label>Состав</label><hr />
+            <table id="invoiceItems" class="needFillData table table-stripped HideIfNewRecord" data='{"linkedTable":"invoiceItems", "foreignKey":"InvoiceId", "editInTable":true}'>
+                <tr>
+                    <th name="brand">Наименование</th>
+                    <th name="description">Описание</th>
+                    <th name="qty">Количество</th>
+                    <th name="price">Стоимость</th>
+                    <th name="deliveryDate">Ожидаемая дата поставки</th>
+                    <th class="actionsTd" name="actionCol">Действия</th>
+                </tr>
+            </table>
+            <div class="btn btn-white HideIfNewRecord" onclick="createTableRow('#invoiceItems', 'invoiceId')">Добавить позицию</div>
+        </div>
+    </div>
+</body>
+</html>

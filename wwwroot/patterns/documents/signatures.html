@@ -1,0 +1,48 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="ordersLoadedContent">
+        <div class="documentTitle">Подпись</div>
+        <form id="signaturesFormBody" data="signatures" class="needFillData form-group" onsubmit="SaveEntity('#signaturesFormBody', true); return false">
+            <input type="submit" value="" hidden />
+            <div class="col-md">
+                <div id="ordersForm" class="dropdownField" data='{"linkedTable":"orders"}'>
+                    <label>Ордер</label>
+                    <input hidden class="id" name="orderId" type="number" value="0">
+                    <input id="ordersInput" class="form-control dropdown speller" name="reference" type="text" value=""
+                           oninput="showSelector('#ordersInput', '.id' )" disabled>
+                </div>
+                <div id="usersForm" class="dropdownField" data='{"linkedTable":"users"}'>
+                    <label>Пользователь</label>
+                    <input hidden class="id" name="userId" type="number" value="0">
+                    <input id="usersInput" class="form-control dropdown speller" name="name" type="text" value=""
+                           oninput="showSelector('#usersInput', '.id' )">
+                    <span class="dropdown-icon"
+                          onclick="toggleSelector('#usersInput', '.id' )">
+                        <!--редактировать первый параметр ф-ции showSelector-->
+                        <i class="fa fa-sort-down"></i>
+                    </span>
+                    <span class="inlineIcon close-icon"
+                          onclick="clearDropdown('#usersForm')">
+                        <!--редактировать первый параметр ф-ции clearDropdown-->
+                        <i class="fa fa-close"></i>
+                    </span>
+                </div>
+                <input class="form-control" name="id" style="display: none;" type="number" hidden>
+                <label>Комментарий</label>
+                <input class="form-control" name="comment" type="text">
+                <label>Дата</label>
+                <input class="form-control" name="date" type="date">
+                <br />
+                <label>Согласован</label>
+                <input class="" name="approval" type="checkbox">
+                <hr />
+                <div class="btn btn-white" onclick="SaveEntity('#signaturesFormBody', true)">Сохранить</div>
+                <div class="btn btn-white HideIfNoParentWindow" onclick="CloseParentWindow()">Закрыть</div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

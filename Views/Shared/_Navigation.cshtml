@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+@{
+    Layout = "_Layout";
+}
+<script src="/js/shared.js"></script>
+
+<div id="loader" class="loader-area" hidden>
+    <div class="loader"></div>
+</div>
+
+<div class="container">
+    @*login modal form*@
+    <div id="loginModal" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Авторизация</h3>
+                    <a href="#close" title="Close" class="close">×</a>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm" onsubmit="SignIn(); return false">
+                        <label>Email</label>
+                        <input class="form-control" name="username" type="email" required autocomplete="on" tabindex="100">
+                        <label>Пароль</label>
+                        <input class="form-control" name="password" type="password" required tabindex="101">
+                        <input type="submit" value="" hidden />
+                        <div class="btn btn-white" onclick="SignIn()">Войти</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notify">
+        <input id="notifyTrigger" type="checkbox" class="notify-trigger" hidden>
+        <section>
+            <div id="notifyType" class="notif">
+                <p id="notifyContent"></p>
+                <div class="notif-progress"></div>
+            </div>
+        </section>
+    </div>
+
+    @*top row with navigation links*@
+    <div class="top row">
+        <div class="col-2"></div>
+        <div class="col-2"></div>
+        <div class="col-2"></div>
+        <div class="col-2"></div>
+        <div class="col-2"></div>
+        <div id="globalUsername" class="col-2 user-wiget"></div>
+    </div>
+    @*login script*@
+    <script>authCheck()</script>
+
+    <hr />
+    <div class="row">
+        @*side menu fith navigation links*@
+        <div class="side-menu menu col-2">
+            <ul id="side-menu-list">
+                <li><a href="/home/document?entity=todo">Панель задач</a></li>
+            </ul>
+        </div>
+        @*content page*@
+        <div class="document-content col-10">
+            @RenderBody()
+        </div>
+    </div>
+    @*script for side menu filling*@
+    <script>
+        GetList('accesses', '#side-menu-list', '/home/')
+    </script>
+
+</div>
+
+

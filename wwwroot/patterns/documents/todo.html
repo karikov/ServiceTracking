@@ -1,0 +1,76 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="todoLoadedContent">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4 documentTitle">Ордеры на утверждение</div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <input id="filterTableInput" class="form-control" type="text" name="filter" value="" placeholder="Фильтр" onkeypress="filterTable(event,'#orders')" />
+                </div>
+            </div>
+            <hr />
+            <table class="needFillData table table-stripped" id="orders" data='{"linkedTable":"orders", "requestSuffix":"/waitApproval"}'>
+                <tr>
+                    <th name="id">Номер</th>
+                    <th name="date">Дата</th>
+                    <th name="reference">Референс</th>
+                    <th name="summ">Сумма</th>
+                    <th name="fk_contragentId_contragents_name">Контрагент</th>
+                    <th class="actionsTd" name="actionCol">Действия</th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4 documentTitle">Договора с истекающим сроком</div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <input id="filterTableInput" class="form-control" type="text" name="filter" value="" placeholder="Фильтр" onkeypress="filterTable(event,'#orders')" />
+                </div>
+            </div>
+            <hr />
+            <table class="needFillData table table-stripped" id="agreementsExpired" data='{"linkedTable":"agreements", "requestSuffix":"/Expired"}'>
+                <tr>
+                    <th name="name">Наименование и номер</th>
+                    <th name="fk_contragentId_contragents_name">Контрагент</th>
+                    <th name="endDate">Дата окончания</th>
+                    <th name="fk_currencyId_currencies_name">Валюта</th>
+                    <th name="payedSumm">Оплачено</th>
+                    <th name="restSumm">Остаток</th>
+                    <th class="actionsTd" name="actionCol">Действия</th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4 documentTitle">Договора с превышением лимита суммы</div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <input id="filterTableInput" class="form-control" type="text" name="filter" value="" placeholder="Фильтр" onkeypress="filterTable(event,'#orders')" />
+                </div>
+            </div>
+            <hr />
+            <table class="needFillData table table-stripped" id="agreementsOverpriced" data='{"linkedTable":"agreements", "requestSuffix":"/Overpriced"}'>
+                <tr>
+                    <th name="name">Наименование и номер</th>
+                    <th name="fk_contragentId_contragents_name">Контрагент</th>
+                    <th name="startDate">Дата</th>
+                    <th name="fk_currencyId_currencies_name">Валюта</th>
+                    <th name="payedSumm">Оплачено</th>
+                    <th name="restSumm">Остаток</th>
+                    <th class="actionsTd" name="actionCol">Действия</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
+
+

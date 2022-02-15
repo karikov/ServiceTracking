@@ -1,0 +1,59 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="bankaccoutsLoadedContent">
+        <div class="documentTitle">Пользователь</div>
+        <form id="usersFormBody" class="form-group needFillData" data="users" onsubmit="SaveEntity('#usersFormBody'); return false">
+            <div class="row">
+                <div class="col-6 text-left form_left">
+                    <label>name</label>
+                    <input class="form-control" name="name">
+                    <label>password</label>
+                    <input class="form-control" name="password">
+                    <div id="positionsForm" class="dropdownField" data='{"linkedTable":"positions"}'>
+                        <label>Должность</label>
+                        <input hidden class="id" name="positionId" type="number" value="0">
+                        <input id="positionsInput" class="form-control dropdown speller" name="name" type="text" value=""
+                               oninput="showSelector('#positionsInput', '.id' )">
+                        <span class="dropdown-icon"
+                              onclick="toggleSelector('#positionsInput', '.id' )">
+                            <!--редактировать первый параметр ф-ции showSelector-->
+                            <i class="fa fa-sort-down"></i>
+                        </span>
+                        <span class="inlineIcon close-icon"
+                              onclick="clearDropdown('#positionsForm')">
+                            <!--редактировать первый параметр ф-ции clearDropdown-->
+                            <i class="fa fa-close"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-6 text-left form_right">
+                    <input name="id" style="display: none;">
+                    <label>email</label>
+                    <input class="form-control" name="email">
+                    <label>role</label>
+                    <input class="form-control" name="role">
+                </div>
+            </div>
+            <div class="col">
+                <div id="saveBtn" class="btn btn-white" onclick="SaveEntity('#usersFormBody')">Сохранить</div>
+                <div class="btn btn-white HideIfNoParentWindow" onclick="CloseParentWindow()">Закрыть</div>
+            </div>
+        </form>
+        <div class="form-group">
+            <label>Доступы</label>
+            <table class="needFillData table table-stripped HideIfNewRecord" id="accesses" data='{"linkedTable":"accesses","foreignKey":"userId"}'>
+                <tr>
+                    <th name="name">Наименование</th>
+                    <th class="actionsTd" name="actionCol">Действия</th>
+                </tr>
+            </table>
+            <div class="btn btn-white HideIfNewRecord" onclick="editData('accessesAssign', 0)">Добавить доступ</div>
+        </div>
+    </div>
+</body>
+</html>
+
+

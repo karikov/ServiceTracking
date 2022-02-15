@@ -1,0 +1,60 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="bankaccoutsLoadedContent">
+        <div class="documentTitle">Расчетный счет</div>
+        <form id="bankaccoutsFormBody" data="bankaccouts" class="needFillData" onsubmit="SaveEntity('#bankaccoutsFormBody'); return false">
+            <input type="submit" value="" hidden />
+            <div class="col-md form-group">
+                <div id="contragentsForm" class="dropdownField" data='{"linkedTable":"contragents"}'>
+                    <label>Контрагент</label>
+                    <input hidden class="id" name="contragentId" type="number" value="0">
+                    <input id="contragentsInput" class="form-control dropdown speller" name="name" type="text" value=""
+                           oninput="showSelector('#contragentsInput', '.id' )" disabled>
+                </div>
+                <input class="form-control" name="id" style="display: none;" type="number">
+                <label>Наименование</label>
+                <input class="form-control" name="name">
+                <label>Номер</label>
+                <input class="form-control" name="accountNum">
+                <div id="banksForm" class="dropdownField" data='{"linkedTable":"banks"}'>
+                    <label>Банк</label>
+                    <input hidden class="id" name="bankId" type="number" value="0">
+                    <input id="banksInput" class="form-control dropdown speller" name="name" type="text" value=""
+                           oninput="showSelector('#banksInput', '.id' )">
+                    <span class="dropdown-icon"
+                          onclick="toggleSelector('#banksInput', '.id' )">
+                        <i class="fa fa-sort-down"></i>
+                    </span>
+                    <span class="inlineIcon close-icon"
+                          onclick="clearDropdown('#banksForm')">
+                        <i class="fa fa-close"></i>
+                    </span>
+                </div>
+                <div id="currenciesForm" class="dropdownField" data='{"linkedTable":"currencies"}'>
+                    <label>Валюта</label>
+                    <input hidden class="id" name="currencyId" type="number" value="0">
+                    <input id="currenciesInput" class="form-control dropdown speller" name="name" type="text" value=""
+                           oninput="showSelector('#currenciesInput', '.id' )">
+                    <span class="dropdown-icon"
+                          onclick="toggleSelector('#currenciesInput', '.id' )">
+                        <i class="fa fa-sort-down"></i>
+                    </span>
+                    <span class="inlineIcon close-icon"
+                          onclick="clearDropdown('#currenciesForm')">
+                        <i class="fa fa-close"></i>
+                    </span>
+                </div>
+            </div>
+        </form>
+        <div class="form-group">
+            <div class="btn btn-white" onclick="SaveEntity('#bankaccoutsFormBody', true)">Сохранить</div>
+            <div class="btn btn-white HideIfNoParentWindow" onclick="CloseParentWindow()">Закрыть</div>
+        </div>
+    </div>
+</body>
+</html>
+
+

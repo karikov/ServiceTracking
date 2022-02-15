@@ -1,0 +1,52 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="accessAssignLoadedContent">
+        <div class="documentTitle">Назначение доступа</div>
+        <form id="FormBody">
+            <div class="col-md form-group">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div id="usersForm" class="dropdownField" data='{"linkedTable":"users"}'>
+                            <label>Пользователь</label>
+                            <input hidden class="id" name="userId" type="number" value="">
+                            <input id="usersInput" class="form-control dropdown speller" name="name" type="text" value=""
+                                   oninput="showSelector('#usersInput', '.id' )">
+                            <span class="dropdown-icon"
+                                  onclick="toggleSelector('#usersInput', '.id' )">
+                                <i class="fa fa-sort-down"></i>
+                            </span>
+                            <span class="inlineIcon close-icon"
+                                  onclick="clearDropdown('#usersForm')">
+                                <i class="fa fa-close"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div id="accessesForm" class="dropdownField" data='{"linkedTable":"accesses"}'>
+                            <label>Доступ</label>
+                            <input hidden class="id" name="accessId" type="number" value="">
+                            <input id="accessesInput" class="form-control dropdown speller" name="name" type="text" value=""
+                                   oninput="showSelector('#accessesInput', '.id' )">
+                            <span class="dropdown-icon"
+                                  onclick="toggleSelector('#accessesInput', '.id' )">
+                                <i class="fa fa-sort-down"></i>
+                            </span>
+                            <span class="inlineIcon close-icon"
+                                  onclick="clearDropdown('#accessesForm')">
+                                <i class="fa fa-close"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>                    
+                <div class="col">
+                    <div class="btn btn-white" onclick="ApiRequest('get', '/api/accesses/{#accessesForm/.id}?addUserId={#usersForm/.id}')">Добавить доступ</div>
+                    <div class="btn btn-white" onclick="ApiRequest('get', '/api/accesses/{#accessesForm/.id}?removeUserId={#usersForm/.id}')">Удалить доступ</div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="agreementsLoadedContent"> 
+        <div class="form-group">
+            <div class="row">
+                <div class="documentTitle col-md-2">Договора</div>
+                <div class="col-md-6"></div>
+                <div class="col-md-4">
+                    <input id="filterTableInput" class="form-control" type="text" name="filter" value="" placeholder="Фильтр" onkeypress="filterTable(event,'#agreements')" />
+                </div>
+            </div>
+            <hr />
+            <table id="agreements" class="needFillData table table-stripped" data='{"linkedTable":"agreements"}'>
+                <tr>
+                    <th name="name">Наименование и номер</th>
+                    <th name="fk_contragentId_contragents_name">Контрагент</th>
+                    <th name="startDate">Дата</th>
+                    <th name="fk_currencyId_currencies_name">Валюта</th>
+                    <th name="payedSumm">Оплачено</th>
+                    <th name="restSumm">Остаток</th>
+                    <th class="actionsTd" name="actionCol">Действия</th>
+                </tr>
+            </table>
+            <hr />
+            <div class="btn btn-white" onclick="editData('agreements', 0)">Добавить договор</div>
+        </div>
+    </div>
+</body>
+</html>

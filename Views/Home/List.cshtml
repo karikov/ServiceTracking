@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_Navigation";
+}
+<div id="document-body">
+    @*контекст документа для наполнения данными функциями JS*@
+    <input id="DocumentContextData" data='{"entityId":@ViewBag.Id, "entityModel":"@ViewBag.Entity",  "pageType":"@ViewBag.PatternType"}' hidden />
+</div>
+<script>
+    //загрузка документа в шаблон и наполнение данными
+    loadDocument('@ViewBag.Entity', '#document-body');
+</script>

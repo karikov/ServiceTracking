@@ -1,0 +1,118 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div id="agreementsLoadedContent">
+        <div class="documentTitle">Договор</div>
+        <form id="agreementsFormBody" data="agreements" class="needFillData" onsubmit="SaveEntity('#agreementsFormBody'); return false">
+            <input type="submit" value="" hidden />
+            <div class="col-md form-group">
+                <div class="row">
+                    <div class="col-md-8">
+                        <input class="form-control" name="id" style="display: none;" type="number">
+                        <label>Наименование и номер</label>
+                        <input class="form-control" name="name">
+                        <div id="contragentsForm" class="dropdownField" data='{"linkedTable":"contragents"}'>
+                            <label>Контрагент</label>
+                            <input hidden class="id" name="contragentId" type="number" value="">
+                            <input id="contragentsInput" class="form-control dropdown speller" name="name" type="text" value=""
+                                   oninput="showSelector('#contragentsInput', '.id' )" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Дата заключения</label>
+                        <input class="form-control" name="startDate" type="date" required>
+                        <label>Дата окончания</label>
+                        <input class="form-control" name="endDate" type="date">
+                    </div>
+                </div>
+                <br />
+                <input class="" name="longTime" type="checkbox" value="on">
+                <label>Бессрочный договор</label>
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col without-padding">
+                        <label>Сумма договора</label>
+                        <input class="form-control" name="summ" type="number" required>
+                    </div>
+                    <div class="col without-padding">
+                        <div id="currenciesForm" class="dropdownField" data='{"linkedTable":"currencies"}'>
+                            <label>Валюта</label>
+                            <input hidden class="id" name="currencyId" type="number" value="0">
+                            <input id="currenciesInput" class="form-control dropdown speller" name="name" type="text" value=""
+                                   oninput="showSelector('#currenciesInput', '.id' )" required>
+                            <span class="dropdown-icon"
+                                  onclick="toggleSelector('#currenciesInput', '.id' )">
+                                <i class="fa fa-sort-down"></i>
+                            </span>
+                            <span class="inlineIcon close-icon"
+                                  onclick="clearDropdown('#currenciesForm')">
+                                <i class="fa fa-close"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col without-padding">
+                        <label>Сумма счетов</label>
+                        <input class="form-control refreshAfterObjectModify" disabled name="invoiceSumm" type="number">
+                    </div>
+                    <div class="col without-padding">
+                        <label>Сумма оплат</label>
+                        <input class="form-control refreshAfterObjectModify" disabled name="payedSumm" type="number">
+                    </div>
+                    <div class="col without-padding">
+                        <label>Остаток</label>
+                        <input class="form-control refreshAfterObjectModify" disabled name="restSumm" type="number">
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="" hidden />
+        </form>
+        <div class="form-group">
+            <div class="btn btn-white" onclick="SaveEntity('#agreementsFormBody')">Сохранить</div>
+            <div class="btn btn-white HideIfNoParentWindow" onclick="CloseParentWindow()">Закрыть</div>
+        </div>
+        <div class="form-group">
+            <label>Ордеры</label><hr />
+            <table id="orders" class="needFillData table table-stripped HideIfNewRecord" data='{"linkedTable":"orders","foreignKey":"AgreementId"}'>
+                <tr>
+                    <th name="id">Номер</th>
+                    <th name="date">Дата</th>
+                    <th name="justification">Обоснование</th>
+                    <th name="summ">Сумма</th>
+                    <th class="actionsTd" name="actionCol">Действия</th>
+                </tr>
+            </table>
+            <div class="btn btn-white HideIfNewRecord" onclick="editData('orders', 0, 'agreementId')">Добавить заявку</div>
+        </div>
+        <div class="form-group">
+            <label>Счета</label><hr />
+            <table id="invoices" class="needFillData table table-stripped HideIfNewRecord" data='{"linkedTable":"invoices","foreignKey":"AgreementId"}'>
+                <tr>
+                    <th name="date">Дата</th>
+                    <th name="number">Номер</th>
+                    <th name="summ">Сумма</th>
+                    <th name="fk_currencyId_currencies_name">Валюта</th>
+                    <th class="actionsTd" name="actionCol">Действия</th>
+                </tr>
+            </table>
+            <div class="btn btn-white HideIfNewRecord" onclick="editData('invoices', 0, 'agreementId')">Добавить инвойс</div>
+        </div>
+        <div class="form-group">
+            <label>Оплаты</label><hr />
+            <table id="payments" class="needFillData table table-stripped HideIfNewRecord" data='{"linkedTable":"payments","foreignKey":"AgreementId", "editInTable":false}'>
+                <tr>
+                    <th name="date">Дата</th>
+                    <th name="fk_invoiceId_invoices_number">Инвойс</th>
+                    <th name="description">Назначение</th>
+                    <th name="summ">Сумма</th>
+                    <th name="fk_currencyId_currencies_name">Валюта</th>
+                    <th class="actionsTd" name="actionCol">Действия</th>
+                </tr>
+            </table>
+            <div class="btn btn-white HideIfNewRecord" onclick="createTableRow('#payments','agreementId')">Добавить оплату</div>
+        </div>
+    </div>
+</body>
+</html>
